@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 
-
+// Signup ---
 const signup = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -31,9 +31,11 @@ const signup = async (req, res) => {
     });
 }
 
+// Login ---
 const login = async (req, res) => {
     const { email, password } = req.body;
 
+    // Check the user already login ---
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -42,6 +44,7 @@ const login = async (req, res) => {
         });
     }
 
+    // Compare the password is match ---
     const isMatch = await bcryptjs.compare(password, user.password);
 
     if (!isMatch) {
@@ -50,12 +53,14 @@ const login = async (req, res) => {
         });
     }
 
+    // Create token ---
     const token = jwt.sign(
         { id: user._id, role: user.role },
         process.env.JWT_SECRET,
         { expiresIn: "1d" }
     );
 
+    // Token stored in cookies ---
     res.cookie("token", token, {
         httpOnly: true,
         sameSite: "strict",
@@ -65,12 +70,13 @@ const login = async (req, res) => {
     res.json({ message: "Login successfull" });
 };
 
+// Logout ---
 const logout = (req, res) => {
     res.clearCookie("token");
     res.json({ message: "Logged out successfully" });
 }
 
-
+// Exports the controllers ---
 module.exports = {
     signup,
     login,

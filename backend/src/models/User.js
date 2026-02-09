@@ -1,8 +1,7 @@
 const { default: mongoose } = require("mongoose");
 
-
-
-
+// UserSchema ---
+// User login and signup ---
 const userSchema = new mongoose.Schema(
     {
         name: {
@@ -28,5 +27,5 @@ const userSchema = new mongoose.Schema(
 );
 
 
-
+// exports ---
 module.exports = mongoose.model("User" , userSchema);
