@@ -1,12 +1,19 @@
 const express = require('express');
-const routes = express.Router()
-const {createTournament} = require('../controllers/tournamentController')
+const routes = express.Router();
+
+// roleMiddleware ---
+const { adminOnly } = require('../middlewares/roleMiddleware');
+const { protect } = require('../middlewares/authMiddleware');
+
+// Tournament Controller ---
+const { createTournament } = require('../controllers/tournamentController')
+const { publishTournament } = require('../controllers/tournamentController')
 
 
 
-
-routes.post('/create', createTournament);
-
+// Routes ---
+routes.post('/create', protect, adminOnly, createTournament);
+routes.put('/publish/:id', protect,  adminOnly, publishTournament)
 
 
 

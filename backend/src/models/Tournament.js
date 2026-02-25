@@ -2,8 +2,8 @@ const { default: mongoose } = require("mongoose");
 
 
 const tournamentSchema = new mongoose.Schema(
-    {
-         name: {
+  {
+    name: {
       type: String,
       required: true,
       trim: true
@@ -45,8 +45,16 @@ const tournamentSchema = new mongoose.Schema(
 
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    }
+      ref: "User",
+      required:true
+    },
+    participants: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ]
+
   },
   { timestamps: true }
 );

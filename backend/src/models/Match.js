@@ -10,8 +10,14 @@ const matchSchema = new mongoose.Schema(
         },
 
         teams: {
-            teamA: String,   // or ObjectId (Player/Team)
-            teamB: String
+            teamA: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            },
+            teamB: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
         },
 
         score: {
@@ -46,7 +52,8 @@ const matchSchema = new mongoose.Schema(
         },
 
         winner: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             default: null
         },
 
@@ -54,7 +61,7 @@ const matchSchema = new mongoose.Schema(
             type: Boolean,
             default: false
         },
-        
+
         // For undo ---
         scoreHistory: [
             {

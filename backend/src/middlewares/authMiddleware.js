@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
-const authMiddleware = (req, res, next) => {
+// Protected Middleware ---
+const protect = async (req, res, next) => {
   try {
     
     const token = req.cookies.token;
@@ -20,4 +22,6 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports = authMiddleware;
+
+
+module.exports = { protect };

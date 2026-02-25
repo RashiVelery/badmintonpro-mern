@@ -10,6 +10,8 @@ const signup = async (req, res) => {
     // Check the user already exist ---
     const userExist = await User.findOne({ email });
 
+
+
     if (userExist) {
         return res.status(400).json({
             message: "User already exist"
@@ -23,13 +25,18 @@ const signup = async (req, res) => {
     const user = await User.create({
         name,
         email,
-        password: hashedPassword
+        password: hashedPassword,
     });
 
     res.status(200).json({
         message: 'User registration successfully'
     });
+
+
 }
+
+
+
 
 // Login ---
 const login = async (req, res) => {
@@ -80,5 +87,5 @@ const logout = (req, res) => {
 module.exports = {
     signup,
     login,
-    logout
+    logout,
 }
