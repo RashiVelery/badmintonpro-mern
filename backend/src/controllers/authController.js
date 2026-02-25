@@ -47,7 +47,8 @@ const login = async (req, res) => {
 
     if (!user) {
         return res.status(400).json({
-            message: "Invalid credentials"
+           field: "email",
+           message: "Email not registered"
         });
     }
 
@@ -56,7 +57,8 @@ const login = async (req, res) => {
 
     if (!isMatch) {
         return res.status(400).json({
-            message: "Invalid credentials"
+            field: "password",
+            message: "Incorrect password"
         });
     }
 
