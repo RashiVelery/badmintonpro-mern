@@ -20,6 +20,22 @@ const tournamentSchema = new mongoose.Schema(
       enum: ["singles", "doubles", "mixed-doubles"],
       required: true
     },
+    location:{
+      type:String,
+      required:true
+    },
+    price:{
+      type:Number,
+      required:true
+    },
+    image:{
+      type: String,
+      required: true
+    },
+    time:{
+      type: Date,
+      required:true
+    },
 
     courts: {
       type: Number,

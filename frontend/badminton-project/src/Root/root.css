@@ -1,0 +1,57 @@
+header {
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    height: 100px;
+    display: flex;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.right-side ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    cursor: pointer;
+}
+
+/* user-icon */
+.user-icon {
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.user-section {
+    position: relative;
+}
+
+/* dropdown */
+.dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 0;
+    width: 120px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+}
+
+.dropdown p {
+    padding: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.dropdown p:hover {
+    background: #f0f0f0;
+}

@@ -71,8 +71,8 @@ const login = async (req, res) => {
 
     // Token stored in cookies ---
     res.cookie("token", token, {
-        httpOnly: true,
-        sameSite: "strict",
+        httpOnly: false,
+        sameSite: "lax",
         secure: false
     });
 

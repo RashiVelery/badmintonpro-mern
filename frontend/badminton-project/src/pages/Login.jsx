@@ -1,82 +1,57 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import API from "../services/api";
+import React from 'react'
+import { useNavigate } from 'react-router'
+import API from '../services/api';
+import { useState } from 'react';
 
-export default function Login() {
+function Login() {
+    // navigate ----
     const navigate = useNavigate();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
 
-    const handleLogin = async () => {
-        setEmailError("");
-        setPasswordError("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    // handle submit ---
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-        if (!email.trim()) {
-            setEmailError("Please enter an email");
-            return;
-        }
-
-        if (!password.trim()) {
-            setPasswordError("Please enter a password");
-            return;
-        }
         try {
-            setError("");
-
-            const res = await API.post("/auth/login", {
+            const response = await API.post('/auth/login', {
                 email,
                 password,
             });
 
-            console.log(res.data);
+            console.log(response.data);
 
-            // If login successful → go to tournaments page
-            navigate("/tournaments");
-
+            navigate('/');
         } catch (err) {
-            const data = err.response?.data;
-
-            if (data?.field === "email") {
-                setEmailError(data.message);
-            }
-
-            if (data?.field === "password") {
-                setPasswordError(data.message);
-            }
+            console.error(err);
+            setError('Login failed');
         }
-    };
-
+    }
     return (
-        <div style={{ padding: "20px" }}>
-            <h2>Login</h2>
+        <>
+            <div>
+                <form onSubmit={handleSubmit}>
+                    <h2>Login</h2>
 
+                    {error && <p style={{ color: "red" }}>{error}</p>}
 
-            <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            {emailError && <p style={{ color: "red", fontSize:"10px" }}>{emailError}</p>}
-            
+                    <input type="email" placeholder='Email'
+                        value={email} onChange={(e) => setEmail(e.target.value)} />
 
-            <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            {passwordError && <p style={{ color: "red", fontSize:"10px" }}>{passwordError}</p>}
-            
+                    <input type="password" placeholder='Password'
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)} />
 
-            <button onClick={handleLogin}>Login</button>
+                    <button type='submit'>Login</button>
 
-            <p style={{ marginTop: "10px" }}>
-                Don't have an account? <Link to="/signup">Signup</Link>
-            </p>
-        </div>
-    );
+                    <p>You don't have an account? <span onClick={() => navigate('/signup')}>Sign Up</span></p>
+
+                </form>
+            </div>
+        </>
+    )
 }
+
+export default Login

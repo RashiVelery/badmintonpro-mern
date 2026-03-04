@@ -1,55 +1,58 @@
-import { useState } from "react";
-import API from "../services/api";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+import API from '../services/api';
+function Signup() {
+    const navigate = useNavigate();
 
-export default function Signup() {
-  const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        name:"",
+        email: "",
+        password: ""
+    });
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const handleSignup = async () => {
-    try {
-      const res = await API.post("/auth/signup", {
-        name,
-        email,
-        password,
-      });
+    const handleChange = (e) =>{
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-      console.log(res.data);
-      alert("Signup successful ✅");
-      navigate("/"); // go to login page
-    } catch (err) {
-      console.log(err.response);
-      setError(err.response?.data?.message || "Signup failed");
-    }
-  };
+    const handleSubmit =async (e) =>{
+        e.preventDefault();
 
-  return (
-    <div>
-      <h2>Signup</h2>
+        try {
+            const res = await API.post("/auth/signup" , formData);
+            alert("signup successfully");
+            navigate('/login');
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        } catch (err) {
+            console.log(err);
+            alert("Signup failed");
+        }
+    };
 
-      <input
-        placeholder="Name"
-        onChange={(e) => setName(e.target.value)}
-      />
+    
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    return (
+        <div>
+            <form onSubmit={handleSubmit} >
+                <h2>Sign Up</h2>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+                <input type="name" placeholder='Name' name='name' value={formData.name} onChange={handleChange} required />
+                
+                <input type="email" placeholder='Email' name='email' value={formData.email} onChange={handleChange} required />
 
-      <button onClick={handleSignup}>Signup</button>
-    </div>
-  );
+
+                <input type="password" placeholder='Password' name='password' value={formData.password} onChange={handleChange} required />
+
+                <button type='submit' >Sign Up</button>
+
+                <p>You already have an account? <span onClick={()=>navigate('/login') }>Login</span></p>
+            </form>
+        </div>
+    )
 }
+
+export default Signup

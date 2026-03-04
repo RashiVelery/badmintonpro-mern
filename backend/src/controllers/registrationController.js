@@ -18,6 +18,8 @@ const registerForTournament = async (req, res) => {
       message: "Tournament is not open for registration"
     })
   }
+  
+
 
   // Prevent duplicate registration
   const existing = await Registration.findOne({

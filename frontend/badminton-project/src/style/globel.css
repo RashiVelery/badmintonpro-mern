@@ -1,0 +1,131 @@
+/* Home css */
+
+
+
+.sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 85%;
+    margin: auto;
+}
+
+.sections-items {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-top: 80px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 80px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    cursor: pointer;
+    background-color: white;
+}
+
+.sections-icon {
+    height: 90px;
+    width: 90px;
+}
+
+.sections-items:hover {
+    background-color: aliceblue;
+}
+
+.sections-text {
+
+    text-align: center;
+}
+
+.carosel {
+    width: 100%;
+
+}
+
+.carosel img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* tournament page */
+
+.cards {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    padding: 10px;
+    gap: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cards:hover {
+    background-color: aliceblue;
+}
+
+.cards-image {
+    width: 1700px;
+    height: 250px;
+    overflow: hidden;
+   
+}
+
+.cards-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+}
+
+.cards-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.cardsText-right {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background: #1e88e5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-left: 400px;
+    margin-right: 20px;
+}
+
+.cardsText-right:hover {
+    background-color: #1472c5;
+}
+
+.cardsText-left h5{
+    color: red;
+}
+
+
+/* comingsoon card  */
+
+.comingSoon {
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    overflow: hidden;
+    height: 270px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.comingSoon img {
+    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center ;
+}
+
