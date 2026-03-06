@@ -133,6 +133,22 @@ const completeTournament = async (req,res) => {
 
 }
 
+const getTournamentById = async (req, res) => {
+  try {
+
+    const tournament = await Tournament.findById(req.params.id);
+
+    if (!tournament) {
+      return res.status(404).json({ message: "Tournament not found" });
+    }
+
+    res.status(200).json(tournament);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
-module.exports = { createTournament, publishTournament, getPublishedTournaments, startTournament, completeTournament }
+
+module.exports = { createTournament, publishTournament, getPublishedTournaments, startTournament, completeTournament,getTournamentById }

@@ -6,7 +6,7 @@ const { adminOnly } = require('../middlewares/roleMiddleware');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Tournament Controller ---
-const { publishTournament,getPublishedTournaments,createTournament,startTournament,completeTournament } = require('../controllers/tournamentController')
+const { publishTournament,getPublishedTournaments,createTournament,startTournament,completeTournament, getTournamentById } = require('../controllers/tournamentController')
 
 
 
@@ -14,8 +14,10 @@ const { publishTournament,getPublishedTournaments,createTournament,startTourname
 routes.post('/create', protect, adminOnly, createTournament);
 routes.put('/publish/:id', protect,  adminOnly, publishTournament);
 routes.get("/published", getPublishedTournaments);
+routes.get('/:id', getTournamentById);
 routes.put('/start/:id',protect, adminOnly, startTournament);
 routes.put('/complete/:id',protect, adminOnly, completeTournament);
+
 
 
 

@@ -1,7 +1,5 @@
 /* Home css */
 
-
-
 .sections {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -71,7 +69,7 @@
     width: 1700px;
     height: 250px;
     overflow: hidden;
-   
+
 }
 
 .cards-image img {
@@ -103,9 +101,84 @@
     background-color: #1472c5;
 }
 
-.cardsText-left h5{
+.cardsText-left h5 {
     color: red;
 }
+
+.filter-container {
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.filter-icon {
+    font-size: 18px;
+}
+
+.clear-btn {
+    color: #0d6efd;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.filter-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.filter-buttons button {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.filter-buttons button:hover {
+    background: #f1f3f5;
+}
+
+.active-filter {
+    background: #0d6efd !important;
+    color: white;
+    border: none;
+}
+
+.price-filter {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.price-filter input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    width: 120px;
+}
+
+
 
 
 /* comingsoon card  */
@@ -122,10 +195,87 @@
 }
 
 .comingSoon img {
-    
+
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center ;
+    object-position: center;
 }
 
+/* register */
+.register-page{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+  background:#f4f6f8;
+  min-height:100vh;
+}
+
+.register-card{
+  background:white;
+  width:900px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+.tournament-section{
+  display:flex;
+}
+
+.tournament-image{
+  width:50%;
+  height:300px;
+  object-fit:cover;
+}
+
+.tournament-details{
+  padding:30px;
+  width:50%;
+}
+
+.tournament-details h2{
+  margin-bottom:20px;
+  color: red;
+}
+
+.detail{
+  margin-bottom:12px;
+}
+
+.detail span{
+  font-weight:600;
+}
+
+.register-form{
+  padding:30px;
+  border-top:1px solid #eee;
+}
+
+.register-form h3{
+  margin-bottom:20px;
+}
+
+.register-form form{
+  display:flex;
+  gap:15px;
+}
+
+.register-form input{
+  flex:1;
+  padding:12px;
+  border:1px solid #ccc;
+}
+
+.register-form button{
+  padding:12px 25px;
+  border:none;
+  background:#007bff;
+  color:white;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.register-form button:hover{
+  background:#0056b3;
+}

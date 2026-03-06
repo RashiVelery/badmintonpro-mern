@@ -13,7 +13,7 @@ function TournamentCard({ tournament }) {
             return;
         }
 
-        navigate('/register')
+        navigate(`/register/${tournament._id}`)
     }
     return (
         <div>
