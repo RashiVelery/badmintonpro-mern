@@ -13,6 +13,14 @@ function AdminRoute({ children }) {
 
         const checkUser = async () => {
 
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                navigate("/login");
+                return;
+            }
+
+
             try {
 
                 const res = await API.get("/auth/me");
@@ -21,7 +29,7 @@ function AdminRoute({ children }) {
                     setIsAdmin(true);
                 } else {
 
-                    if(!alertShown.current){
+                    if (!alertShown.current) {
                         alert("Admin access only");
                         navigate('/')
                         alertShown.current = true
@@ -30,7 +38,7 @@ function AdminRoute({ children }) {
 
             } catch (error) {
 
-                if(!alertShown.current){
+                if (!alertShown.current) {
                     alert('Please login first')
                     alertShown.current = true
                 }
