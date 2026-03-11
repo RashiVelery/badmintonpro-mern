@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 🔥 Create axios instance
 const API = axios.create({
-  baseURL: "http://localhost:5002/api", // change port if needed
+  baseURL: "https://badmintonpro-mernbackend.vercel.app/api", // change port if needed
   withCredentials: true, // important if using cookies
 });
 
