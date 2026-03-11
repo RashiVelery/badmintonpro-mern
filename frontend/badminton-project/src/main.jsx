@@ -14,7 +14,7 @@ import About from './pages/About.jsx';
 import Tournament from './pages/Tournament.jsx';
 import Register from './pages/Register.jsx';
 import Admin from './pages/Admin.jsx';
-import AdminRoute from './Components/AdminRoute.jsx';
+import AdminRoute from './components/AdminRoute.jsx';
 import CreateTournament from './pages/CreateTournament.jsx';
 import PublishTournaments from './pages/PublishTournaments.jsx';
 import GenerateMatches from './pages/GenerateMatches.jsx';
