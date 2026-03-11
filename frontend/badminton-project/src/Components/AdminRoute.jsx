@@ -15,9 +15,7 @@ function AdminRoute({ children }) {
 
             try {
 
-                const res = await API.get("/auth/me", {
-                    withCredentials: true
-                });
+                const res = await API.get("/auth/me");
 
                 if (res.data.role === "admin") {
                     setIsAdmin(true);
