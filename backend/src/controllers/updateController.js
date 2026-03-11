@@ -69,47 +69,50 @@ const finishGame = (match, winnerTeam) => {
     // Match finished
     if (match.gamesWon[winnerTeam] === gamesToWin) {
         match.status = "finished";
-        match.winner = winnerTeam;
+        match.winner = match.teams[winnerTeam];
     } else {
         match.currentGame += 1;
         match.status = "ongoing";
     }
 };
 
-// Add score ---
 const addScore = async (req, res) => {
     try {
-        const { team } = req.body;
 
-        if (!["teamA", "teamB"].includes(team)) {
-            return res.status(400).json({ message: "Invalid team" });
-        }
+        const { team } = req.body
 
-        const match = await Match.findById(req.params.id);
+        console.log("TEAM:", team)   // 🔍 team value check
+
+        const match = await Match.findById(req.params.id)
+
+        console.log("MATCH:", match) // 🔍 match data check
 
         if (!match) {
-            return res.status(404).json({ message: "Match not found" });
+            return res.status(404).json({ message: "Match not found" })
         }
 
         if (match.status === "finished") {
-            return res.status(400).json({ message: "Match already finished" });
+            return res.status(400).json({
+                message: "Match already finished"
+            })
         }
 
-        if (match.status === "interval") {
-            return res
-                .status(400)
-                .json({ message: "Match is in interval. Resume to continue." });
+
+        if (!["teamA", "teamB"].includes(team)) {
+            return res.status(400).json({ message: "Invalid team" })
         }
 
-        const updatedMatch = addPoint(match, team);
-        await updatedMatch.save();
+        addPoint(match, team)
 
-        res.json(updatedMatch);
+        await match.save()
+
+        res.json(match)
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.log(error)
+        res.status(500).json({ message: error.message })
     }
-};
-
+}
 // Resume match ---
 const resumeMatch = async (req, res) => {
     try {
@@ -134,56 +137,56 @@ const resumeMatch = async (req, res) => {
 
 
 const undoScore = async (req, res) => {
-  try {
-    const match = await Match.findById(req.params.id);
+    try {
+        const match = await Match.findById(req.params.id);
 
-    if (!match || match.scoreHistory.length === 0) {
-      return res.status(400).json({ message: "Nothing to undo" });
+        if (!match || match.scoreHistory.length === 0) {
+            return res.status(400).json({ message: "Nothing to undo" });
+        }
+
+        const lastAction = match.scoreHistory.pop();
+
+        // Save for redo
+        match.redoStack.push(lastAction);
+
+        // Revert score
+        match.score[lastAction.team] -= 1;
+
+        // Restore status if needed
+        if (match.status === "interval") {
+            match.status = "ongoing";
+            match.intervalTaken = false;
+        }
+
+        await match.save();
+        res.json(match);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-
-    const lastAction = match.scoreHistory.pop();
-
-    // Save for redo
-    match.redoStack.push(lastAction);
-
-    // Revert score
-    match.score[lastAction.team] -= 1;
-
-    // Restore status if needed
-    if (match.status === "interval") {
-      match.status = "ongoing";
-      match.intervalTaken = false;
-    }
-
-    await match.save();
-    res.json(match);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
 };
 
 
 const redoScore = async (req, res) => {
-  try {
-    const match = await Match.findById(req.params.id);
+    try {
+        const match = await Match.findById(req.params.id);
 
-    if (!match || match.redoStack.length === 0) {
-      return res.status(400).json({ message: "Nothing to redo" });
+        if (!match || match.redoStack.length === 0) {
+            return res.status(400).json({ message: "Nothing to redo" });
+        }
+
+        const action = match.redoStack.pop();
+
+        // Re-apply score
+        match.score[action.team] += 1;
+
+        // Save back to history
+        match.scoreHistory.push(action);
+
+        await match.save();
+        res.json(match);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
-
-    const action = match.redoStack.pop();
-
-    // Re-apply score
-    match.score[action.team] += 1;
-
-    // Save back to history
-    match.scoreHistory.push(action);
-
-    await match.save();
-    res.json(match);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
 };
 
 

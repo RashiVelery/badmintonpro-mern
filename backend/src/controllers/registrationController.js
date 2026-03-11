@@ -18,7 +18,7 @@ const registerForTournament = async (req, res) => {
       message: "Tournament is not open for registration"
     })
   }
-  
+
 
 
   // Prevent duplicate registration
@@ -30,6 +30,18 @@ const registerForTournament = async (req, res) => {
 
   if (existing) {
     return res.status(400).json({ message: "Already registered" });
+  }
+
+  // check slotes 
+  const registeredCount = await Registration.countDocuments({
+    tournament: tournamentId,
+    status: { $ne: "rejected" }
+  })
+
+  if (registeredCount >= tournament.slots) {
+    return res.status(400).json({
+      message: "Tournament slots are full"
+    })
   }
 
   // register for tournament

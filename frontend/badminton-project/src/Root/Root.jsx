@@ -5,14 +5,36 @@ import { useState, useEffect } from 'react';
 import { useRef } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
+import API from '../services/api';
+import { RxHamburgerMenu } from "react-icons/rx";
+
 
 function Root() {
     // navigate ----
     const navigate = useNavigate();
 
-
+    const [menuOpen, setMenuOpen] = useState(false)
     const [open, setOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const checkUser = async () => {
+            try {
+                const res = await API.get('/auth/me', {
+                    withCredentials: true
+                })
+                if (res.data) {
+                    setIsLoggedIn(true);
+                }
+            } catch (error) {
+                setIsLoggedIn(false)
+            }
+        };
+        checkUser();
+    }, []);
+
+
 
     // close when clicking outside ----
     useEffect(() => {
@@ -32,7 +54,14 @@ function Root() {
         };
     }, []);
 
-
+    const handleLogout = async () => {
+        await API.post('/auth/logout', {}, {
+            withCredentials: true
+        });
+        alert('Logout successfully')
+        setIsLoggedIn(false)
+        navigate('/login');
+    }
 
 
 
@@ -45,7 +74,14 @@ function Root() {
                     <div className='left-side'>
                         <h1>Badminton Pro</h1>
                     </div>
-                    <div className='right-side'>
+
+                    <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                        <RxHamburgerMenu/>
+                    </div>
+
+
+
+                    <div className={`right-side ${menuOpen ? "active" : ""}`}>
                         <ul>
                             <li onClick={() => navigate('/')}>
                                 Home
@@ -53,7 +89,7 @@ function Root() {
                             <li onClick={() => navigate('/about')}>
                                 About Us
                             </li>
-                            <li>
+                            <li onClick={() => navigate('/contactus')}>
                                 Contact Us
                             </li>
                             <li className="user-section" ref={dropdownRef}>
@@ -64,7 +100,9 @@ function Root() {
 
                                 {open && (
                                     <div className="dropdown">
-                                        <p onClick={() => navigate('/login')}>Login</p>
+                                        {isLoggedIn ? (<p onClick={handleLogout}>Logout</p>) :
+                                            <p onClick={() => navigate('/login')}>Login</p>}
+
                                     </div>
                                 )}
                             </li>
@@ -72,7 +110,7 @@ function Root() {
                     </div>
                 </nav>
             </header>
-           
+
             <Outlet />
         </div>
     )

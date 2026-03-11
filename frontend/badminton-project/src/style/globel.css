@@ -2,7 +2,7 @@
 
 .sections {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
     width: 85%;
     margin: auto;
 }
@@ -46,136 +46,23 @@
     object-position: top;
 }
 
-/* tournament page */
+@media (max-width: 768px) {
 
-.cards {
-    display: flex;
-    align-items: center;
-    width: 80%;
-    margin: auto;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-    padding: 10px;
-    gap: 20px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+    .sections {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
-.cards:hover {
-    background-color: aliceblue;
-}
+    .sections-items {
+        padding: 40px;
+    }
 
-.cards-image {
-    width: 1700px;
-    height: 250px;
-    overflow: hidden;
+    .carosel img {
+        height: 40vh;
+    }
 
-}
-
-.cards-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-}
-
-.cards-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.cardsText-right {
-    align-self: flex-end;
-    padding: 10px 20px;
-    background: #1e88e5;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-left: 400px;
-    margin-right: 20px;
-}
-
-.cardsText-right:hover {
-    background-color: #1472c5;
-}
-
-.cardsText-left h5 {
-    color: red;
-}
-
-.filter-container {
-    width: 90%;
-    margin: auto;
-    margin-top: 30px;
-}
-
-.filter-header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.filter-title {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.filter-icon {
-    font-size: 18px;
-}
-
-.clear-btn {
-    color: #0d6efd;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.filter-buttons {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-.filter-buttons button {
-    padding: 7px 16px;
-    border-radius: 20px;
-    border: 1px solid #ddd;
-    background: white;
-    cursor: pointer;
-    transition: 0.2s;
-    font-size: 14px;
-}
-
-.filter-buttons button:hover {
-    background: #f1f3f5;
-}
-
-.active-filter {
-    background: #0d6efd !important;
-    color: white;
-    border: none;
-}
-
-.price-filter {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.price-filter input {
-    padding: 6px 10px;
-    border-radius: 6px;
-    border: 1px solid #ddd;
-    width: 120px;
 }
 
 
@@ -187,7 +74,6 @@
     align-items: center;
     width: 80%;
     margin: auto;
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
     overflow: hidden;
     height: 270px;
     margin-top: 20px;
@@ -202,80 +88,398 @@
     object-position: center;
 }
 
+.comingSoon {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.comingSoon img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.comingSoon span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
 /* register */
-.register-page{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:40px;
-  background:#f4f6f8;
-  min-height:100vh;
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: #f4f6f8;
+    min-height: 100vh;
 }
 
-.register-card{
-  background:white;
-  width:900px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-  overflow:hidden;
+.register-card {
+    background: white;
+    width: 900px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-.tournament-section{
-  display:flex;
+.tournament-section {
+    display: flex;
 }
 
-.tournament-image{
-  width:50%;
-  height:300px;
-  object-fit:cover;
+.tournament-image {
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
 }
 
-.tournament-details{
-  padding:30px;
-  width:50%;
+.tournament-details {
+    padding: 30px;
+    width: 50%;
 }
 
-.tournament-details h2{
-  margin-bottom:20px;
-  color: red;
+.tournament-details h2 {
+    margin-bottom: 20px;
+    color: red;
 }
 
-.detail{
-  margin-bottom:12px;
+.detail {
+    margin-bottom: 12px;
 }
 
-.detail span{
-  font-weight:600;
+.detail span {
+    font-weight: 600;
 }
 
-.register-form{
-  padding:30px;
-  border-top:1px solid #eee;
+.register-form {
+    padding: 30px;
+    border-top: 1px solid #eee;
 }
 
-.register-form h3{
-  margin-bottom:20px;
+.register-form h3 {
+    margin-bottom: 20px;
 }
 
-.register-form form{
-  display:flex;
-  gap:15px;
+.register-form form {
+    display: flex;
+    gap: 15px;
 }
 
-.register-form input{
-  flex:1;
-  padding:12px;
-  border:1px solid #ccc;
+.register-form input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
 }
 
-.register-form button{
-  padding:12px 25px;
-  border:none;
-  background:#007bff;
-  color:white;
-  cursor:pointer;
-  font-weight:600;
+.register-form button {
+    padding: 12px 25px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
 }
 
-.register-form button:hover{
-  background:#0056b3;
+.register-form button:hover {
+    background: #0056b3;
 }
+
+@media (max-width:768px) {
+
+    .tournament-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tournament-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .register-form form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .register-form input {
+        width: 100%;
+    }
+
+    .register-form button {
+        width: 100%;
+    }
+
+}
+
+
+/* admin page */
+
+.admin-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.admin-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.admin-card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.admin-card h3 {
+    margin-bottom: 10px;
+}
+
+.admin-card p {
+    color: gray;
+}
+
+/* Create Tournament Page / Admin */
+
+.create-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px;
+}
+
+.type-selection {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.category-selection {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.create-form input {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.create-form button {
+    padding: 12px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.create-form button:hover {
+    background: #0b5ed7;
+}
+
+/* publishTournament */
+
+.publish-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.publish-container h2 {
+    margin-bottom: 25px;
+}
+
+.tournament-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.tournament-card:hover {
+    transform: translateY(-3px);
+}
+
+.card-left h3 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.location {
+    color: gray;
+    margin-top: 5px;
+}
+
+.status {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.publish-btn {
+    background: #2563eb;
+    border: none;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.publish-btn:hover {
+    background: #1e4ed8;
+}
+
+.published-label {
+    color: green;
+    font-weight: 600;
+}
+
+/* matchcreation */
+
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.container h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.tournament-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+.tournament-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.tournament-card h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.tournament-card p {
+    color: #777;
+    margin-top: 5px;
+}
+
+/* TournamentRegistration */
+.registrations-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.registration-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-info h3 {
+    margin: 0;
+}
+
+.status {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.status.pending {
+    color: #f59e0b;
+}
+
+.status.approved {
+    color: #10b981;
+}
+
+.status.rejected {
+    color: #ef4444;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.approve-btn {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.approve-btn:hover {
+    background: #16a34a;
+}
+
+.reject-btn:hover {
+    background: #dc2626;
+}
+

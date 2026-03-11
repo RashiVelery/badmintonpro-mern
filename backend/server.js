@@ -5,7 +5,6 @@ const tournamentRoutes = require('./src/routes/tournamentRoutes');
 const matchRoutes = require('./src/routes/matchRoutes');
 const updateRoutes = require('./src/routes/updateRoutes');
 const registrationRoutes = require('./src/routes/registrationRoutes')
-const statRoutes = require('./src/routes/statRoutes')
 // require express ---
 const express = require('express')
 const app = express()
@@ -30,7 +29,7 @@ app.use('/api/tournament', tournamentRoutes);
 app.use('/api/match', matchRoutes);
 app.use('/api/match', updateRoutes);
 app.use('/api/registration', registrationRoutes)
-app.use('/api/stats' , statRoutes)
+
 
 
 // Port from .env ---

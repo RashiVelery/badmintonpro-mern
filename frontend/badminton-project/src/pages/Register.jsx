@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import API from '../services/api'
+import '../style/globel.css'
+
 function Register() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [tournament, setTournament] = useState({});
 
@@ -32,12 +35,29 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         try {
-            await API.post('/registration/register', {
+            const res = await API.post('/registration/register', {
                 tournamentId: id,
                 ...formData
+            }, {
+                withCredentials: true
             });
+
+            alert('Registration successful');
+            navigate('/tournaments')
+
         } catch (error) {
+            if(error.response?.status === 401){
+                alert('Please login to register for the tournament');
+                navigate('/login')
+                return;
+            }
+            if(error.response?.data?.message){
+                alert(error.response.data.message);
+                return;
+            }
+
             alert('Registration failed');
         }
 

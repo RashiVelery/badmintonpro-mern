@@ -20,21 +20,21 @@ const tournamentSchema = new mongoose.Schema(
       enum: ["singles", "doubles", "mixed-doubles"],
       required: true
     },
-    location:{
-      type:String,
-      required:true
-    },
-    price:{
-      type:Number,
-      required:true
-    },
-    image:{
+    location: {
       type: String,
       required: true
     },
-    time:{
+    price: {
+      type: Number,
+      required: true
+    },
+    image: {
+      type: String,
+      required: true
+    },
+    time: {
       type: Date,
-      required:true
+      required: true
     },
 
     courts: {
@@ -43,16 +43,12 @@ const tournamentSchema = new mongoose.Schema(
       min: 1
     },
 
-    rules: {
-      pointsPerGame: { type: Number, default: 21 },
-      bestOf: { type: Number, default: 3 },
-      interval: {
-        enabled: { type: Boolean, default: true },
-        at: { type: Number, default: 11 }
-      },
-      deuceEnabled: { type: Boolean, default: true }
+    slots: {
+      type: Number,
+      required: true,
+      min: 2
     },
-
+    
     status: {
       type: String,
       enum: ["draft", "published", "ongoing", "completed"],
@@ -62,14 +58,10 @@ const tournamentSchema = new mongoose.Schema(
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required:true
+      required: true
     },
-    participants: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-      }
-    ]
+
+
 
   },
   { timestamps: true }

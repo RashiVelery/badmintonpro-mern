@@ -2,6 +2,8 @@ import React from 'react'
 import { useNavigate } from 'react-router'
 import API from '../services/api';
 import { useState } from 'react';
+import '../style/login.css';
+
 
 function Login() {
     // navigate ----
@@ -23,7 +25,10 @@ function Login() {
 
             console.log(response.data);
 
+            alert('Login successfully')
             navigate('/');
+            window.location.reload()
+
         } catch (err) {
             console.error(err);
             setError('Login failed');
@@ -31,25 +36,41 @@ function Login() {
     }
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit}>
+            <div className="login-page">
+
+                <form className="login-card" onSubmit={handleSubmit}>
+
                     <h2>Login</h2>
 
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    {error && <p className="error">{error}</p>}
 
-                    <input type="email" placeholder='Email'
-                        value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
 
-                    <input type="password" placeholder='Password'
+                    <input
+                        type="password"
+                        placeholder="Password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
 
-                    <button type='submit'>Login</button>
+                    <button type="submit">Login</button>
 
-                    <p>You don't have an account? <span onClick={() => navigate('/signup')}>Sign Up</span></p>
+                    <p className="signup-text">
+                        Don't have an account?
+                        <span onClick={() => navigate('/signup')}>
+                            Sign Up
+                        </span>
+                    </p>
 
                 </form>
+
             </div>
+
         </>
     )
 }

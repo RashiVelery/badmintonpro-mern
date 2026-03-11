@@ -1,0 +1,146 @@
+/* Container styling */
+.generate-container {
+    padding: 40px 20px;
+    background-color: #f8fafc;
+    /* Light grayish blue background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+/* Card styling */
+.generate-card {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.generate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Info section inside card */
+.tournament-info h3 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.location {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.slots {
+    font-weight: 600;
+    color: #334155;
+    font-size: 0.9rem;
+}
+
+.slots span {
+    color: #2563eb;
+    /* Blue for remaining slots number */
+    font-size: 1rem;
+}
+
+/* Button Group Wrapper (Add a div around buttons for better control) */
+.button-group {
+    display: flex;
+    gap: 12px;
+}
+
+/* Generate Button */
+.generate-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.generate-btn:hover {
+    background-color: #1d4ed8;
+}
+
+/* View Matches Button (Secondary Style) */
+.view-btn {
+    background-color: transparent;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* Existing Desktop styles... (mumbu nalkiyath) */
+
+/* Mobile Responsiveness (For screens smaller than 600px) */
+@media (max-width: 600px) {
+    .generate-container {
+        padding: 20px 15px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+        /* Font size kurachu kurachu */
+        text-align: center;
+    }
+
+    .generate-card {
+        flex-direction: column;
+        /* Buttons-um info-yum thazhe thazhe varaan */
+        align-items: flex-start;
+        /* Left aligned aakkan */
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .button-group {
+        width: 100%;
+        /* Buttons full width aakkan */
+        flex-direction: column;
+        /* Buttons thazhe thazhe varaan */
+        gap: 10px;
+    }
+
+    .generate-btn,
+    .view-btn {
+        width: 100%;
+        /* Mobile-il buttons nalla vethiyil kaanan */
+        padding: 14px;
+        text-align: center;
+    }
+
+    .tournament-info h3 {
+        font-size: 1.2rem;
+    }
+}

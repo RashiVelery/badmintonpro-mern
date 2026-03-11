@@ -1,0 +1,33 @@
+.matches-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+.view-stats-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+  transition: all 0.3s ease;
+}
+
+.view-stats-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Mobile-il header align cheyyaan */
+@media (max-width: 600px) {
+  .matches-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}

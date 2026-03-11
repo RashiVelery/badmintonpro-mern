@@ -9,6 +9,7 @@ import { GiTennisCourt } from "react-icons/gi";
 import "../style/globel.css"
 import { HiBookOpen } from "react-icons/hi2";
 import {  useNavigate } from 'react-router';
+import { MdAdminPanelSettings } from "react-icons/md";
 
 
 function Home() {
@@ -54,20 +55,15 @@ function Home() {
 
                     </div>
 
-                    <div className='sections-items'>
-                        <HiBookOpen className='sections-icon' />
+                    <div className='sections-items' onClick={()=>navigate('/admin')}>
+                        <MdAdminPanelSettings className='sections-icon' />
 
-                        <p className='sections-text'>
-                            Register
+                        <p className='sections-text' >
+                            Admin
                         </p>
                     </div>
 
-                    <div className='sections-items'>
-                        <GiTennisCourt className='sections-icon' />
-                        <p className='sections-text'>
-                            Matches
-                        </p>
-                    </div>
+                   
                 </div>
             </div>
         </>
