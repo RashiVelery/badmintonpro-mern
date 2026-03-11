@@ -5,25 +5,24 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import './App.css'
 import App from './App.jsx'
-import Root from './root/Root.jsx';
-import Login from './pages/Login.jsx';
-import Signup from './pages/Signup.jsx';
-import Home from './pages/Home.jsx';
-import About from './pages/About.jsx';
-import Tournament from './pages/Tournament.jsx';
-import Register from './pages/Register.jsx';
-import Admin from './pages/Admin.jsx';
-import AdminRoute from './components/AdminRoute.jsx';
-import CreateTournament from './pages/CreateTournament.jsx';
-import PublishTournaments from './pages/PublishTournaments.jsx';
-import GenerateMatches from './pages/GenerateMatches.jsx';
-import ManageRegistrations from './pages/ManageRegistration.jsx';
-import TournamentRegistrations from './pages/TournamentRegistration.jsx';
-import ContactUs from './pages/ContactUs.jsx';
-import AdminMatchControl from './pages/AdminMatchController.jsx';
-import Matches from './pages/Matches.jsx';
+import Root from './Root/Root.jsx';
+import Login from './Pages/Login.jsx';
+import Signup from './Pages/Signup.jsx';
+import Home from './Pages/Home.jsx';
+import About from './Pages/About.jsx';
+import Tournament from './Pages/Tournament.jsx';
+import Register from './Pages/Register.jsx';
+import Admin from './Pages/Admin.jsx';
+import AdminRoute from './Components/AdminRoute.jsx';
+import CreateTournament from './Pages/CreateTournament.jsx';
+import PublishTournaments from './Pages/PublishTournaments.jsx';
+import GenerateMatches from './Pages/GenerateMatches.jsx';
+import ManageRegistrations from './Pages/ManageRegistration.jsx';
+import TournamentRegistrations from './Pages/TournamentRegistration.jsx';
+import ContactUs from './Pages/ContactUs.jsx';
+import AdminMatchControl from './Pages/AdminMatchController.jsx';
+import Matches from './Pages/Matches.jsx';
 
 
 const router = createBrowserRouter([

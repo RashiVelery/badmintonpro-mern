@@ -6,7 +6,7 @@ import '../style/globel.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import API from '../services/api';
-import TournamentCard from '../components/TournamentCard';
+import TournamentCard from '../Components/TournamentCard';
 import { VscSettings } from "react-icons/vsc";
 
 
