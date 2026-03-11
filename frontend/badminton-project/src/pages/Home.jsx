@@ -5,9 +5,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 // react icons ----
 import { BsFillTrophyFill } from "react-icons/bs";
-import { GiTennisCourt } from "react-icons/gi";
 import "../style/globel.css"
-import { HiBookOpen } from "react-icons/hi2";
 import {  useNavigate } from 'react-router';
 import { MdAdminPanelSettings } from "react-icons/md";
 
