@@ -23,6 +23,7 @@ import TournamentRegistrations from './pages/TournamentRegistration.jsx';
 import ContactUs from './pages/ContactUs.jsx';
 import AdminMatchControl from './pages/AdminMatchController.jsx';
 import Matches from './pages/Matches.jsx';
+import UserList from './pages/UserList.jsx';
 
 
 const router = createBrowserRouter([
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
         path: '/matches/:tournamentId',
         element: <Matches />
       },
+      {
+        path:'/usersList',
+        element:<UserList/>
+      }
      
     ]
   }

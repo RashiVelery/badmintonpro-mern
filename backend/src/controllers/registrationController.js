@@ -2,56 +2,72 @@ const Registration = require("../models/Registration");
 const Tournament = require("../models/Tournament");
 
 const registerForTournament = async (req, res) => {
-  const { tournamentId } = req.body;
-  const userId = req.user.id; // from auth middleware
 
-  // get tournament 
-  const tournament = await Tournament.findById(tournamentId);
+  try {
+    const { tournamentId, playerName, phone, paymentId, paymentStatus } = req.body;
 
-  if (!tournament) {
-    return res.status(404).json({ message: "Tournament not found" });
-  };
+    const userId = req.user.id; // from auth middleware
 
-  // only published tournaments allow registration
-  if (tournament.status !== "published") {
-    return res.status(400).json({
-      message: "Tournament is not open for registration"
+    // get tournament 
+    const tournament = await Tournament.findById(tournamentId);
+
+    if (!tournament) {
+      return res.status(404).json({ message: "Tournament not found" });
+    };
+
+    // only published tournaments allow registration
+    if (tournament.status !== "published") {
+      return res.status(400).json({
+        message: "Tournament is not open for registration"
+      })
+    }
+
+
+
+    // Prevent duplicate registration
+    const existing = await Registration.findOne({
+      tournament: tournamentId,
+      user: userId
+    });
+
+
+    if (existing) {
+      return res.status(400).json({ message: "Already registered" });
+    }
+
+    // check slotes 
+    const registeredCount = await Registration.countDocuments({
+      tournament: tournamentId,
+      status: { $ne: "rejected" }
     })
+
+    if (registeredCount >= tournament.slots) {
+      return res.status(400).json({
+        message: "Tournament slots are full"
+      })
+    }
+
+    console.log('Request body:', req.body); // 👈 add this
+
+    // register for tournament
+
+    const registration = await Registration.create({
+      tournament: tournamentId,
+      user: userId,
+      playerName,
+      phone,
+      paymentId,
+      paymentStatus: paymentStatus || 'paid',
+      status: 'pending'
+    });
+
+    res.status(201).json(registration);
+  } catch (error) {
+    console.error('Registration error:', error.message);
+    console.error('Validation errors:', error.errors);
+    res.status(400).json({ message: error.message });
   }
 
-
-
-  // Prevent duplicate registration
-  const existing = await Registration.findOne({
-    tournament: tournamentId,
-    user: userId
-  });
-
-
-  if (existing) {
-    return res.status(400).json({ message: "Already registered" });
-  }
-
-  // check slotes 
-  const registeredCount = await Registration.countDocuments({
-    tournament: tournamentId,
-    status: { $ne: "rejected" }
-  })
-
-  if (registeredCount >= tournament.slots) {
-    return res.status(400).json({
-      message: "Tournament slots are full"
-    })
-  }
-
-  // register for tournament
-  const registration = await Registration.create({
-    tournament: tournamentId,
-    user: userId,
-    status: 'pending'
-  });
-
-  res.status(201).json(registration);
 };
 
 

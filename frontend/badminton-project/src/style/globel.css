@@ -2,7 +2,7 @@
 
 .sections {
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr;
     width: 85%;
     margin: auto;
 }
@@ -110,111 +110,6 @@
     font-size: 40px;
     font-weight: bold;
     text-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
-}
-
-/* register */
-.register-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    background: #f4f6f8;
-    min-height: 100vh;
-}
-
-.register-card {
-    background: white;
-    width: 900px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.tournament-section {
-    display: flex;
-}
-
-.tournament-image {
-    width: 50%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.tournament-details {
-    padding: 30px;
-    width: 50%;
-}
-
-.tournament-details h2 {
-    margin-bottom: 20px;
-    color: red;
-}
-
-.detail {
-    margin-bottom: 12px;
-}
-
-.detail span {
-    font-weight: 600;
-}
-
-.register-form {
-    padding: 30px;
-    border-top: 1px solid #eee;
-}
-
-.register-form h3 {
-    margin-bottom: 20px;
-}
-
-.register-form form {
-    display: flex;
-    gap: 15px;
-}
-
-.register-form input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ccc;
-}
-
-.register-form button {
-    padding: 12px 25px;
-    border: none;
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.register-form button:hover {
-    background: #0056b3;
-}
-
-@media (max-width:768px) {
-
-    .tournament-section {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .tournament-image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .register-form form {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .register-form input {
-        width: 100%;
-    }
-
-    .register-form button {
-        width: 100%;
-    }
-
 }
 
 
@@ -482,4 +377,3 @@
 .reject-btn:hover {
     background: #dc2626;
 }
-

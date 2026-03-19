@@ -5,6 +5,8 @@ const tournamentRoutes = require('./src/routes/tournamentRoutes');
 const matchRoutes = require('./src/routes/matchRoutes');
 const updateRoutes = require('./src/routes/updateRoutes');
 const registrationRoutes = require('./src/routes/registrationRoutes')
+const paymentRoutes = require('./src/routes/paymentRoutes');
+
 // require express ---
 const express = require('express')
 const app = express()
@@ -19,7 +21,7 @@ connectDB();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://badmintonpro-mernfrontend.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true
 }))
 
@@ -28,7 +30,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tournament', tournamentRoutes);
 app.use('/api/match', matchRoutes);
 app.use('/api/match', updateRoutes);
-app.use('/api/registration', registrationRoutes)
+app.use('/api/registration', registrationRoutes);
+app.use('/api/payment', paymentRoutes);
+
 
 
 

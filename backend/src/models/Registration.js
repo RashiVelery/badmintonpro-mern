@@ -6,13 +6,13 @@ const registrationSchema = new mongoose.Schema(
         tournament: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Tournament",
-            require: true
+            required: true
         },
 
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
-            require: true
+            required: true
         },
 
         partner: {
@@ -21,13 +21,25 @@ const registrationSchema = new mongoose.Schema(
             default: null
         },
 
+        playerName: { type: String },
+
+        phone: { type: String },
+
         status: {
             type: String,
             enum: ["pending", "approved", "rejected"],
             default: "pending"
+        },
+
+        paymentId: {
+            type: String, required: false
+        },
+
+        paymentStatus: {
+            type: String, default: 'pending'
         }
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
 

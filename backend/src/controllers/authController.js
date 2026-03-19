@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const sendLoginEmail = require('../utils/sendEmail.js');
 
 
 // Signup ---
@@ -47,8 +48,8 @@ const login = async (req, res) => {
 
     if (!user) {
         return res.status(400).json({
-           field: "email",
-           message: "Email not registered"
+            field: "email",
+            message: "Email not registered"
         });
     }
 
@@ -59,6 +60,13 @@ const login = async (req, res) => {
         return res.status(400).json({
             field: "password",
             message: "Incorrect password"
+        });
+    }
+
+    if (user.isActive === false) {
+        return res.status(403).json({
+            field: "email",
+            message: "Your account has been disabled please contact admin..."
         });
     }
 
@@ -76,6 +84,8 @@ const login = async (req, res) => {
         secure: true,
     });
 
+    sendLoginEmail(user.email, user.name);
+
     res.json({ message: "Login successfull" });
 };
 
@@ -85,9 +95,31 @@ const logout = (req, res) => {
     res.json({ message: "Logged out successfully" });
 }
 
+const toggleUserStatus = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const user = await User.findById(id);
+
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        user.isActive = !user.isActive;
+
+        // ഡാറ്റാബേസിൽ സേവ് ചെയ്യുന്നു (ഇതാണ് പ്രധാനം!)
+        await user.save();
+
+        res.status(200).json({
+            message: `User ${user.isActive ? 'Enabled' : 'Disabled'} successfully`,
+            isActive: user.isActive
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 // Exports the controllers ---
 module.exports = {
     signup,
     login,
     logout,
+    toggleUserStatus
 }

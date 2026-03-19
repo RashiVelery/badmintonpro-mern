@@ -31,6 +31,11 @@ function Admin() {
           <p>Create match fixtures</p>
         </div>
 
+         <div className="admin-card" onClick={()=>navigate('/usersList')}>
+          <h3>User List</h3>
+          <p>Logged in users</p>
+        </div>
+
       </div>
 
     </div>

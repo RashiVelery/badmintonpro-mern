@@ -30,6 +30,14 @@ function Login() {
             window.location.reload()
 
         } catch (err) {
+
+            if(err.response && err.response.status === 403){
+                alert(err.response.data.message);
+            }else if(err.response.data.message){
+                alert(err.response.data.message);
+            }else{
+                alert('Something went wrong. Please try again.');
+            }
             console.error(err);
             setError('Login failed');
         }
